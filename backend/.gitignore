@@ -1,0 +1,57 @@
+# Python standard ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+
+# Virtual environment
+venv/
+env/
+*.env
+*.venv
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Editor & OS files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# FastAPI & Dependencies
+instance/
+alembic/versions/  # ถ้าใช้ Alembic ควรพิจารณาว่า versions ควรเก็บหรือไม่
+migrations/        # ถ้าใช้ SQLAlchemy Migrations อาจต้อง exclude migrations
+logs/
+coverage/
+
+# Docker & Deployment
+docker-compose.override.yml
+.env.production
+.env.development
+.env.local
+
+# Pytest & Testing
+.coverage
+htmlcov/
+pytest_cache/
+.tox/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Ignore SQLite database files
+*.sqlite3
+*.db
+*.db-journal
+
+# ignore image file
+*.png
+*.jpg
+*.jpeg
+
+lineNotificationsBroadcast.py
+lineNotificationGroupTarget.py

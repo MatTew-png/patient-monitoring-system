@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Thai:wght@100..900&display=swap");
+@import "tailwindcss";
+@import "tailwindcss-animated";
+
+* {
+  font-family: "Noto Serif Thai", sans-serif;
+  /* background-color: #e7f0f3; */
+}
+
+.inset-shadow {
+  box-shadow: inset 0 4px 5px rgba(0, 0, 0, 0.1);
+}
