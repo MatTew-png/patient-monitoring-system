@@ -13,24 +13,19 @@ const Login: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      // 🔐 Login API
-      const { access_token, token_type, user_id } = await authService.login(
-        username,
-        password
-      );
+      // 🔓 Bypass Login: ตั้งค่าสิทธิ์เป็น Admin ทันที
+      setAuth("admin-bypass-token-2026", "bearer", 1);
+      setCurrentUser({
+        name: "MatTew (Admin)",
+        position: "Admin",
+        ward_id: 1,
+      });
 
-      // 🧠 เก็บ token ใน store
-      setAuth(access_token, token_type, user_id);
-
-      // 👤 ดึง current user
-      const user = await authService.getCurrentUser();
-      setCurrentUser(user);
-
-      // ✅ ไปหน้าแรก
+      // ✅ ไปหน้าแรกทันที
       navigate("/");
     } catch (error) {
-      alert("เข้าสู่ระบบไม่สำเร็จ กรุณาตรวจสอบชื่อผู้ใช้และรหัสผ่าน");
       console.error(error);
+      navigate("/");
     }
   };
 

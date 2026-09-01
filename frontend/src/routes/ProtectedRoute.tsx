@@ -8,20 +8,8 @@ interface ProtectedRouteProps {
   allowedRoles?: string[]; // ✅ เพิ่ม prop สำหรับจำกัดสิทธิ์
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles }) => {
-  const { token, currentUser } = useAuthStore();
-
-  // ❌ ถ้ายังไม่มี token → กลับไปหน้า login
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
-
-  // ✅ ถ้ามีการจำกัด role → ตรวจสอบ position ของ currentUser
-  if (allowedRoles && currentUser && !allowedRoles.includes(currentUser.position)) {
-    return <Navigate to="/" replace />;
-  }
-
-  // ✅ ผ่านทุกเงื่อนไข → render หน้านั้นได้
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+  // ✅ Bypass Auth: ให้เข้าใช้งานได้ทันทีในสิทธิ์ Admin
   return children;
 };
 
