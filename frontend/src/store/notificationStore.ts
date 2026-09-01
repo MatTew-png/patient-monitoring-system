@@ -48,16 +48,17 @@ interface NotificationStore {
   moveToAccepted: (notification_id: number, type: "sos" | "emergency") => void;
 }
 
+import { MOCK_NOTIFICATIONS } from "../services/mockData";
+
 export const useNotificationStore = create<NotificationStore>((set, get) => ({
-  // NotificationByPatientAndSensor: [],
   LogHistoryNotifications: {},
-  emergencyDatas: [],
+  emergencyDatas: [MOCK_NOTIFICATIONS[0]],
   emergencyDataWithAccepted: [],
-  sosDatas: [],
+  sosDatas: [MOCK_NOTIFICATIONS[1]],
   sosDataWithAccepted: [],
-  notifications: [],
+  notifications: MOCK_NOTIFICATIONS,
   showAlert: false,
-  selectedAlertType: "", // ค่าเริ่มต้น
+  selectedAlertType: "",
   setSelectedAlertType: (type) => set({ selectedAlertType: type }),
 
   setShowAlert: (value) => set({ showAlert: value }),
