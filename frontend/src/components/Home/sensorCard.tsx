@@ -122,7 +122,7 @@ const SensorCard: React.FC<Props> = ({
   return (
     <div
       id="sensorCard"
-      className={`relative border border-black rounded-lg w-[150px] h-1/3 p-1 transition-all overflow-hidden duration-250 shadow-[0_3px_10px_rgb(0,0,0,0.2)]
+      className={`relative border border-black rounded-lg w-[150px] h-1/3 p-1.5 flex flex-col justify-between transition-all overflow-hidden duration-250 shadow-[0_3px_10px_rgb(0,0,0,0.2)]
     bg-[#B7D6DE]
     ${
       sensor?.history_value_sensor[0]?.notification_level === 2
@@ -137,7 +137,7 @@ const SensorCard: React.FC<Props> = ({
     >
       {isHovered && selectedSensor && patient && (
         <button
-          className="absolute top-1 right-1 text-white w-6 h-6 flex items-center justify-center rounded-full shadow-md hover:bg-red-700 transition-all duration-150 cursor-pointer"
+          className="absolute top-1 right-1 text-white w-6 h-6 flex items-center justify-center rounded-full shadow-md hover:bg-red-700 transition-all duration-150 cursor-pointer z-10"
           onClick={handleRemoveSensor}
           aria-label="Remove Sensor"
           id="btnRemove"
@@ -146,65 +146,41 @@ const SensorCard: React.FC<Props> = ({
         </button>
       )}
       {selectedSensor ? (
-        <>
-          <p className="font-normal">{selectedSensor.sensor_name}</p>
-          <div className="flex items-center justify-between pl-1">
+        <div className="flex flex-col h-full justify-between">
+          <p className="text-xs font-semibold text-gray-800 truncate leading-tight" title={selectedSensor.sensor_name || selectedSensor.sensor_type}>
+            {selectedSensor.sensor_name || selectedSensor.sensor_type}
+          </p>
+          <div className="flex items-center justify-between px-0.5 my-0.5">
             <img
               src={iconPath}
               alt={sensorType}
-              className="w-6 h-6"
+              className="w-5 h-5 flex-shrink-0 object-contain"
               id="sensorImg"
             />
-            <div className="relative w-full h-1/3">
-              <h5 className="text-3xl font-bold text-center m-0 ">
-                {selectedSensor ? (
-                  // ตรวจสอบชนิดของเซ็นเซอร์และจัดการตำแหน่ง
-                  selectedSensor.sensor_type === "heart_rate" ? (
-                    <div id="heartSensorValue" className="px-4">
-                      {selectedSensor.history_value_sensor?.slice(-1)[0]
-                        ?.history_value_sensor_value || "-"}
-                    </div>
-                  ) : selectedSensor.sensor_type === "spo2" ? (
-                    <div id="spo2SensorValue" className="pr-4">
-                      {selectedSensor.history_value_sensor?.slice(-1)[0]
-                        ?.history_value_sensor_value || "-"}
-                    </div>
-                  ) : selectedSensor.sensor_type === "respiration" ? (
-                    <div id="respiSensorValue" className="px-0.9">
-                      {selectedSensor.history_value_sensor?.slice(-1)[0]
-                        ?.history_value_sensor_value || "-"}
-                    </div>
-                  ) : (
-                    // หากเป็นเซ็นเซอร์อื่นๆ
-                    <div id="noSensorValue" className="px-4">
-                      {selectedSensor.history_value_sensor?.slice(-1)[0]
-                        ?.history_value_sensor_value || "-"}
-                    </div>
-                  )
-                ) : (
-                  // กรณีไม่มี selectedSensor
-                  <div className="px-4">-</div>
-                )}
-              </h5>
+            <div className="flex-1 text-center px-1">
+              <span className="text-2xl font-bold text-gray-900 leading-none">
+                {selectedSensor.history_value_sensor?.slice(-1)[0]
+                  ?.history_value_sensor_value || "-"}
+              </span>
             </div>
-            <p className="font-normal text-right" id="unit">
-              {selectedSensor.sensor_unit}
-            </p>
+            <span className="text-xs font-semibold text-gray-700 flex-shrink-0" id="unit">
+              {selectedSensor.sensor_unit || "bpm"}
+            </span>
           </div>
-          <div className="flex justify-center -mt-2">
+          <div className="flex justify-center items-center h-6 overflow-hidden">
             <img
               src={wavePath}
               alt={`${sensorType} Wave`}
-              className="w-16 h-9"
+              className="w-16 h-7 object-contain"
               id="sensorWave"
             />
           </div>
-        </>
+        </div>
       ) : (
-        <div className="flex items-center justify-center cursor-pointer pt-6 ">
+        <div className="flex items-center justify-center cursor-pointer h-full">
           <i
             id="addSensor"
-            className="bi bi-patch-plus-fill text-4xl text-[#2E5361] "
+            className="bi bi-patch-plus-fill text-3xl text-[#2E5361]"
           ></i>
         </div>
       )}

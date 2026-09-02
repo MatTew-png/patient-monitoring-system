@@ -136,7 +136,7 @@ export const createMockSensors = (bedId: number): Sensor[] => [
   {
     sensor_id: bedId * 10 + 1,
     bed_id: bedId,
-    sensor_name: "อัตราการเต้นของหัวใจ (Heart Rate)",
+    sensor_name: "Heart Rate",
     sensor_type: "heart_rate",
     sensor_status: true,
     sensor_unit: "bpm",
@@ -152,7 +152,7 @@ export const createMockSensors = (bedId: number): Sensor[] => [
   {
     sensor_id: bedId * 10 + 2,
     bed_id: bedId,
-    sensor_name: "ระดับออกซิเจนในเลือด (SpO2)",
+    sensor_name: "SpO2",
     sensor_type: "spo2",
     sensor_status: true,
     sensor_unit: "%",
@@ -168,7 +168,7 @@ export const createMockSensors = (bedId: number): Sensor[] => [
   {
     sensor_id: bedId * 10 + 3,
     bed_id: bedId,
-    sensor_name: "อัตราการหายใจ (Respiration)",
+    sensor_name: "Respiration",
     sensor_type: "respiration",
     sensor_status: true,
     sensor_unit: "rpm",
@@ -184,7 +184,7 @@ export const createMockSensors = (bedId: number): Sensor[] => [
   {
     sensor_id: bedId * 10 + 4,
     bed_id: bedId,
-    sensor_name: "เซนเซอร์ตรวจจับการเคลื่อนไหวและการนอน (Bed & Sleep Sensor)",
+    sensor_name: "Bed & Sleep",
     sensor_type: "bed_sensor",
     sensor_status: true,
     sensor_unit: "State",
