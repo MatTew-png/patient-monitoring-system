@@ -7,16 +7,51 @@ import { Room } from "../types/room";
 import { Notification } from "../types/notification";
 import { User } from "../types/user";
 
+export const MOCK_BUILDINGS: Building[] = [
+  {
+    building_id: 1,
+    building_name: "อาคารเฉลิมพระเกียรติ 80 พรรษา",
+    floor: [
+      {
+        floor_id: 4,
+        floor_number: 4,
+        building_id: 1,
+        wards: [],
+      },
+    ],
+  },
+];
+
+export const MOCK_FLOOR = MOCK_BUILDINGS[0].floor![0];
+
 export const MOCK_WARD: Ward = {
   ward_id: 1,
   ward_name: "วอร์ดอายุรกรรมโรคหัวใจและหลอดเลือด (Cardiology Ward 4B)",
-  floor_id: 4,
+  floor: MOCK_FLOOR,
 };
 
 export const MOCK_ROOMS: Room[] = [
-  { room_id: 101, room_name: "ห้อง 401 (ผู้ป่วยวิกฤต/ติดตามใกล้ชิด)", ward_id: 1, ward: MOCK_WARD },
-  { room_id: 102, room_name: "ห้อง 402 (ผู้ป่วยพักฟื้น)", ward_id: 1, ward: MOCK_WARD },
-  { room_id: 103, room_name: "ห้อง 403 (ห้องพิเศษเดี่ยว)", ward_id: 1, ward: MOCK_WARD },
+  {
+    room_id: 101,
+    room_name: "ห้อง 401 (ผู้ป่วยวิกฤต/ติดตามใกล้ชิด)",
+    ward_id: 1,
+    ward: MOCK_WARD,
+    floor: MOCK_FLOOR,
+  },
+  {
+    room_id: 102,
+    room_name: "ห้อง 402 (ผู้ป่วยพักฟื้น)",
+    ward_id: 1,
+    ward: MOCK_WARD,
+    floor: MOCK_FLOOR,
+  },
+  {
+    room_id: 103,
+    room_name: "ห้อง 403 (ห้องพิเศษเดี่ยว)",
+    ward_id: 1,
+    ward: MOCK_WARD,
+    floor: MOCK_FLOOR,
+  },
 ];
 
 export const MOCK_PATIENTS: Patient[] = [
@@ -25,10 +60,10 @@ export const MOCK_PATIENTS: Patient[] = [
     patient_name: "นายสมชาย พัฒนกิจ",
     patient_age: 68,
     patient_gender: "ชาย",
-    patient_dob: "1958-04-12",
+    patient_dob: "12/04/2501 (1958-04-12)",
     patient_disease: "กล้ามเนื้อหัวใจขาดเลือด (CAD), ความดันโลหิตสูง",
     patient_status: "เข้ารับการรักษา",
-    patient_date_in: "2026-08-28",
+    patient_date_in: "28/08/2026",
     patient_bloodtype: "O+",
     image_path: "/src/assets/default.png",
   },
@@ -37,10 +72,10 @@ export const MOCK_PATIENTS: Patient[] = [
     patient_name: "นางมาลี ทองคำ",
     patient_age: 74,
     patient_gender: "หญิง",
-    patient_dob: "1952-11-05",
+    patient_dob: "05/11/2495 (1952-11-05)",
     patient_disease: "ภาวะหัวใจล้มเหลว (CHF), เสี่ยงต่อการพลัดตกหกล้ม",
     patient_status: "เฝ้าระวังพิเศษ",
-    patient_date_in: "2026-08-29",
+    patient_date_in: "29/08/2026",
     patient_bloodtype: "B+",
     image_path: "/src/assets/default.png",
   },
@@ -49,10 +84,10 @@ export const MOCK_PATIENTS: Patient[] = [
     patient_name: "นายวิชัย เกียรติสุข",
     patient_age: 59,
     patient_gender: "ชาย",
-    patient_dob: "1967-02-18",
+    patient_dob: "18/02/2510 (1967-02-18)",
     patient_disease: "หัวใจเต้นผิดจังหวะ (Atrial Fibrillation)",
     patient_status: "เข้ารับการรักษา",
-    patient_date_in: "2026-08-30",
+    patient_date_in: "30/08/2026",
     patient_bloodtype: "A+",
     image_path: "/src/assets/default.png",
   },
@@ -61,10 +96,10 @@ export const MOCK_PATIENTS: Patient[] = [
     patient_name: "นางสมศรี ประเสริฐสุข",
     patient_age: 81,
     patient_gender: "หญิง",
-    patient_dob: "1945-09-24",
+    patient_dob: "24/09/2488 (1945-09-24)",
     patient_disease: "หลังผ่าตัดข้อสะโพก, อัมพฤกษ์ซีกซ้าย",
     patient_status: "เฝ้าระวังพิเศษ",
-    patient_date_in: "2026-08-31",
+    patient_date_in: "31/08/2026",
     patient_bloodtype: "AB+",
     image_path: "/src/assets/default.png",
   },
@@ -73,10 +108,10 @@ export const MOCK_PATIENTS: Patient[] = [
     patient_name: "นายเอกชัย นามสมมุติ",
     patient_age: 62,
     patient_gender: "ชาย",
-    patient_dob: "1964-07-14",
+    patient_dob: "14/07/2507 (1964-07-14)",
     patient_disease: "ถุงลมโป่งพอง (COPD), ภาวะขาดออกซิเจนเรื้อรัง",
     patient_status: "เข้ารับการรักษา",
-    patient_date_in: "2026-09-01",
+    patient_date_in: "01/09/2026",
     patient_bloodtype: "O-",
     image_path: "/src/assets/default.png",
   },
@@ -85,14 +120,17 @@ export const MOCK_PATIENTS: Patient[] = [
     patient_name: "นางกานดา รักษ์ดี",
     patient_age: 65,
     patient_gender: "หญิง",
-    patient_dob: "1961-03-30",
+    patient_dob: "30/03/2504 (1961-03-30)",
     patient_disease: "โรคไตวายเรื้อรังระยะ 4, เบาหวานชนิดที่ 2",
     patient_status: "เข้ารับการรักษา",
-    patient_date_in: "2026-09-01",
+    patient_date_in: "01/09/2026",
     patient_bloodtype: "B-",
     image_path: "/src/assets/default.png",
   },
 ];
+
+const now = new Date();
+const todayISO = now.toISOString().split("T")[0];
 
 export const createMockSensors = (bedId: number): Sensor[] => [
   {
@@ -101,13 +139,14 @@ export const createMockSensors = (bedId: number): Sensor[] => [
     sensor_name: "อัตราการเต้นของหัวใจ (Heart Rate)",
     sensor_type: "heart_rate",
     sensor_status: true,
-    sensor_unit: "BPM",
+    sensor_unit: "bpm",
     sensor_mac_i: `AA:BB:CC:DD:0${bedId}:01`,
-    history_value_sensor: Array.from({ length: 12 }, (_, i) => ({
+    history_value_sensor: Array.from({ length: 24 }, (_, i) => ({
       history_value_sensor_id: i + 1,
       sensor_id: bedId * 10 + 1,
-      sensor_value: (72 + Math.sin(i) * 5 + (bedId % 3)).toFixed(0),
-      timestamp: `2026-09-01T${String(10 + i).padStart(2, "0")}:00:00Z`,
+      history_value_sensor_value: (74 + Math.sin(i / 2) * 5 + (bedId % 3)).toFixed(0),
+      history_value_sensor_time: `${todayISO}T${String(i).padStart(2, "0")}:00:00.000Z`,
+      notification_level: 0,
     })),
   },
   {
@@ -118,11 +157,12 @@ export const createMockSensors = (bedId: number): Sensor[] => [
     sensor_status: true,
     sensor_unit: "%",
     sensor_mac_i: `AA:BB:CC:DD:0${bedId}:02`,
-    history_value_sensor: Array.from({ length: 12 }, (_, i) => ({
-      history_value_sensor_id: i + 10,
+    history_value_sensor: Array.from({ length: 24 }, (_, i) => ({
+      history_value_sensor_id: i + 30,
       sensor_id: bedId * 10 + 2,
-      sensor_value: (98 + (i % 2)).toFixed(0),
-      timestamp: `2026-09-01T${String(10 + i).padStart(2, "0")}:00:00Z`,
+      history_value_sensor_value: (98 + (i % 2)).toFixed(0),
+      history_value_sensor_time: `${todayISO}T${String(i).padStart(2, "0")}:00:00.000Z`,
+      notification_level: 0,
     })),
   },
   {
@@ -131,25 +171,67 @@ export const createMockSensors = (bedId: number): Sensor[] => [
     sensor_name: "อัตราการหายใจ (Respiration)",
     sensor_type: "respiration",
     sensor_status: true,
-    sensor_unit: "RPM",
+    sensor_unit: "rpm",
     sensor_mac_i: `AA:BB:CC:DD:0${bedId}:03`,
-    history_value_sensor: Array.from({ length: 12 }, (_, i) => ({
-      history_value_sensor_id: i + 20,
+    history_value_sensor: Array.from({ length: 24 }, (_, i) => ({
+      history_value_sensor_id: i + 60,
       sensor_id: bedId * 10 + 3,
-      sensor_value: (16 + (i % 3)).toFixed(0),
-      timestamp: `2026-09-01T${String(10 + i).padStart(2, "0")}:00:00Z`,
+      history_value_sensor_value: (16 + (i % 3)).toFixed(0),
+      history_value_sensor_time: `${todayISO}T${String(i).padStart(2, "0")}:00:00.000Z`,
+      notification_level: 0,
     })),
   },
   {
     sensor_id: bedId * 10 + 4,
     bed_id: bedId,
-    sensor_name: "เซนเซอร์ตรวจจับการเคลื่อนไหวและการล้ม (Fall & Motion Sensor)",
-    sensor_type: "fall_detection",
+    sensor_name: "เซนเซอร์ตรวจจับการเคลื่อนไหวและการนอน (Bed & Sleep Sensor)",
+    sensor_type: "bed_sensor",
     sensor_status: true,
     sensor_unit: "State",
     sensor_mac_i: `AA:BB:CC:DD:0${bedId}:04`,
     history_value_sensor: [
-      { history_value_sensor_id: 101, sensor_id: bedId * 10 + 4, sensor_value: "On Bed (Safe)", timestamp: "2026-09-01T15:00:00Z" },
+      {
+        history_value_sensor_id: 101,
+        sensor_id: bedId * 10 + 4,
+        history_value_sensor_value: "นอนหงาย",
+        history_value_sensor_time: `${todayISO}T00:00:00.000Z`,
+        notification_level: 0,
+      },
+      {
+        history_value_sensor_id: 102,
+        sensor_id: bedId * 10 + 4,
+        history_value_sensor_value: "ตะแคงขวา",
+        history_value_sensor_time: `${todayISO}T02:30:00.000Z`,
+        notification_level: 0,
+      },
+      {
+        history_value_sensor_id: 103,
+        sensor_id: bedId * 10 + 4,
+        history_value_sensor_value: "ตะแคงซ้าย",
+        history_value_sensor_time: `${todayISO}T05:15:00.000Z`,
+        notification_level: 0,
+      },
+      {
+        history_value_sensor_id: 104,
+        sensor_id: bedId * 10 + 4,
+        history_value_sensor_value: "นั่งบนเตียง",
+        history_value_sensor_time: `${todayISO}T06:45:00.000Z`,
+        notification_level: 0,
+      },
+      {
+        history_value_sensor_id: 105,
+        sensor_id: bedId * 10 + 4,
+        history_value_sensor_value: "ไม่อยู่ที่เตียง",
+        history_value_sensor_time: `${todayISO}T07:15:00.000Z`,
+        notification_level: 0,
+      },
+      {
+        history_value_sensor_id: 106,
+        sensor_id: bedId * 10 + 4,
+        history_value_sensor_value: "นอนหงาย",
+        history_value_sensor_time: `${todayISO}T08:00:00.000Z`,
+        notification_level: 0,
+      },
     ],
   },
 ];
@@ -223,57 +305,6 @@ export const MOCK_BEDS: Bed[] = [
   },
 ];
 
-export const MOCK_BUILDINGS: Building[] = [
-  {
-    building_id: 1,
-    building_name: "อาคารเฉลิมพระเกียรติ 80 พรรษา",
-    floors: [
-      {
-        floor_id: 4,
-        floor_number: 4,
-        building_id: 1,
-        wards: [MOCK_WARD],
-      },
-    ],
-  },
-];
-
-export const MOCK_USERS: User[] = [
-  {
-    user_id: 1,
-    username: "mattew.admin",
-    name: "ภัทรพล จันทร์สง่า (MatTew)",
-    position: "Admin",
-    role: "Admin",
-    ward_id: 1,
-    ward: MOCK_WARD,
-    tel: "081-234-5678",
-    email: "65160078@go.buu.ac.th",
-  },
-  {
-    user_id: 2,
-    username: "dr.sudaporn",
-    name: "พญ. สุดาพร วัฒนกุล",
-    position: "Doctor",
-    role: "Doctor",
-    ward_id: 1,
-    ward: MOCK_WARD,
-    tel: "082-987-6543",
-    email: "sudaporn.w@hospital.go.th",
-  },
-  {
-    user_id: 3,
-    username: "nurse.waraporn",
-    name: "พว. วราภรณ์ สุขใจ",
-    position: "Nurse",
-    role: "Nurse",
-    ward_id: 1,
-    ward: MOCK_WARD,
-    tel: "083-456-7890",
-    email: "waraporn.s@hospital.go.th",
-  },
-];
-
 export const MOCK_NOTIFICATIONS: Notification[] = [
   {
     notification_id: 1,
@@ -285,12 +316,13 @@ export const MOCK_NOTIFICATIONS: Notification[] = [
     notification_createdate: new Date().toISOString(),
     sensor_notifications_config: {
       sensor_notifications_config_id: 1,
-      sensor_id: 24,
-      sensor_notifications_config_name: "ตรวจพบการเคลื่อนไหวผิดปกติ (เสี่ยงล้ม)",
+      sensor_id: 14,
+      sensor_notifications_config_name: "ตรวจพบการเคลื่อนไหวผิดปกติ (เสี่ยงล้ม/ตกเตียง)",
       sensor_notifications_config_unit: "State",
       sensor_notifications_config_status: true,
       sensor_notifications_config_type: "Emergency",
-    },
+      sensor_notifications_config_event: "ตรวจพบการเคลื่อนไหวผิดปกติ (เสี่ยงล้ม/ตกเตียง)",
+    } as any,
   },
   {
     notification_id: 2,
@@ -302,11 +334,63 @@ export const MOCK_NOTIFICATIONS: Notification[] = [
     notification_createdate: new Date(Date.now() - 15 * 60000).toISOString(),
     sensor_notifications_config: {
       sensor_notifications_config_id: 2,
-      sensor_id: 31,
+      sensor_id: 11,
       sensor_notifications_config_name: "อัตราการเต้นของหัวใจสูงผิดปกติ (>100 bpm)",
-      sensor_notifications_config_unit: "BPM",
+      sensor_notifications_config_unit: "bpm",
       sensor_notifications_config_status: true,
       sensor_notifications_config_type: "SOS",
-    },
+      sensor_notifications_config_event: "อัตราการเต้นของหัวใจสูงผิดปกติ (>100 bpm)",
+    } as any,
+  },
+  {
+    notification_id: 3,
+    sensor_notifications_config_id: 3,
+    log_bed_patient_sensor_id: 103,
+    notification_category: "Warning",
+    notification_accepted: true,
+    notification_successed: true,
+    notification_createdate: new Date(Date.now() - 60 * 60000).toISOString(),
+    sensor_notifications_config: {
+      sensor_notifications_config_id: 3,
+      sensor_id: 12,
+      sensor_notifications_config_name: "ระดับออกซิเจนในเลือดลดลงต่ำกว่า 95%",
+      sensor_notifications_config_unit: "%",
+      sensor_notifications_config_status: true,
+      sensor_notifications_config_type: "Warning",
+      sensor_notifications_config_event: "ระดับออกซิเจนในเลือดลดลงต่ำกว่า 95%",
+    } as any,
+  },
+];
+
+export const MOCK_USERS: User[] = [
+  {
+    user_id: 1,
+    user_username: "mattew.admin",
+    user_name: "ภัทรพล จันทร์สง่า (MatTew)",
+    user_position: "Admin",
+    user_password: "password123",
+    ward_id: 1,
+    ward: MOCK_WARD,
+    image_path: "/src/assets/Male User.png",
+  },
+  {
+    user_id: 2,
+    user_username: "dr.sudaporn",
+    user_name: "พญ. สุดาพร วัฒนกุล",
+    user_position: "Doctor",
+    user_password: "password123",
+    ward_id: 1,
+    ward: MOCK_WARD,
+    image_path: "/src/assets/Male User.png",
+  },
+  {
+    user_id: 3,
+    user_username: "nurse.waraporn",
+    user_name: "พว. วราภรณ์ สุขใจ",
+    user_position: "Nurse",
+    user_password: "password123",
+    ward_id: 1,
+    ward: MOCK_WARD,
+    image_path: "/src/assets/Nurse_bot.png",
   },
 ];

@@ -36,8 +36,8 @@ export function sensorWebsocket(
             if (history.length > 0) {
               history[history.length - 1] = {
                 ...history[history.length - 1],
-                sensor_value: String(hr),
-                timestamp: new Date().toISOString(),
+                history_value_sensor_value: String(hr),
+                history_value_sensor_time: new Date().toISOString(),
               };
             }
             return {
@@ -51,8 +51,8 @@ export function sensorWebsocket(
             if (history.length > 0) {
               history[history.length - 1] = {
                 ...history[history.length - 1],
-                sensor_value: String(spo2),
-                timestamp: new Date().toISOString(),
+                history_value_sensor_value: String(spo2),
+                history_value_sensor_time: new Date().toISOString(),
               };
             }
             return {
